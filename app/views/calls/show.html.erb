@@ -1,39 +1,31 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Call -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Phone number:</strong>
-  <%= @call.phone_number %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:phone_number) %>:</strong></dt>
+  <dd><%= @call.phone_number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:contact_name) %>:</strong></dt>
+  <dd><%= @call.contact_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:recieved_at) %>:</strong></dt>
+  <dd><%= @call.recieved_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:responded) %>:</strong></dt>
+  <dd><%= @call.responded %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_voicemail) %>:</strong></dt>
+  <dd><%= @call.is_voicemail %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:message) %>:</strong></dt>
+  <dd><%= @call.message %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:customer_id) %>:</strong></dt>
+  <dd><%= @call.customer_id %></dd>
+</dl>
 
-<p>
-  <strong>Contact name:</strong>
-  <%= @call.contact_name %>
-</p>
-
-<p>
-  <strong>Recieved at:</strong>
-  <%= @call.recieved_at %>
-</p>
-
-<p>
-  <strong>Responded:</strong>
-  <%= @call.responded %>
-</p>
-
-<p>
-  <strong>Is voicemail:</strong>
-  <%= @call.is_voicemail %>
-</p>
-
-<p>
-  <strong>Message:</strong>
-  <%= @call.message %>
-</p>
-
-<p>
-  <strong>Customer:</strong>
-  <%= @call.customer %>
-</p>
-
-<%= link_to 'Edit', edit_call_path(@call) %> |
-<%= link_to 'Back', calls_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              calls_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_call_path(@call), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              call_path(@call),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

@@ -1,33 +1,52 @@
-<%= form_for(@email) do |f| %>
-  <% if @email.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@email.errors.count, "error") %> prohibited this email from being saved:</h2>
+<%= form_for @email, :html => { :class => "form-horizontal email" } do |f| %>
 
-      <ul>
-      <% @email.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @email.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@email.errors.count, "error") %> prohibited this email from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @email.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email_address %><br>
-    <%= f.text_field :email_address %>
+  <div class="control-group">
+    <%= f.label :email_address, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email_address, :class => 'form-control' %>
+    </div>
+    <%= error_span(@email[:email_address]) %>
   </div>
-  <div class="field">
-    <%= f.label :email_subject %><br>
-    <%= f.text_field :email_subject %>
+  <div class="control-group">
+    <%= f.label :email_subject, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email_subject, :class => 'form-control' %>
+    </div>
+    <%= error_span(@email[:email_subject]) %>
   </div>
-  <div class="field">
-    <%= f.label :email_text %><br>
-    <%= f.text_area :email_text %>
+  <div class="control-group">
+    <%= f.label :email_text, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email_text, :class => 'form-control' %>
+    </div>
+    <%= error_span(@email[:email_text]) %>
   </div>
-  <div class="field">
-    <%= f.label :customer_id %><br>
-    <%= f.text_field :customer_id %>
+  <div class="control-group">
+    <%= f.label :customer_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :customer_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@email[:customer_id]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            emails_path, :class => 'btn btn-default' %>
+
 <% end %>

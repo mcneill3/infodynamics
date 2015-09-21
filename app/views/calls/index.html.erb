@@ -1,39 +1,48 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Calls</h1>
-
-<table>
+<%- model_class = Call -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Phone number</th>
-      <th>Contact name</th>
-      <th>Recieved at</th>
-      <th>Responded</th>
-      <th>Is voicemail</th>
-      <th>Message</th>
-      <th>Customer</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:phone_number) %></th>
+      <th><%= model_class.human_attribute_name(:contact_name) %></th>
+      <th><%= model_class.human_attribute_name(:recieved_at) %></th>
+      <th><%= model_class.human_attribute_name(:responded) %></th>
+      <th><%= model_class.human_attribute_name(:is_voicemail) %></th>
+      <th><%= model_class.human_attribute_name(:message) %></th>
+      <th><%= model_class.human_attribute_name(:customer_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @calls.each do |call| %>
       <tr>
+        <td><%= link_to call.id, call_path(call) %></td>
         <td><%= call.phone_number %></td>
         <td><%= call.contact_name %></td>
         <td><%= call.recieved_at %></td>
         <td><%= call.responded %></td>
         <td><%= call.is_voicemail %></td>
         <td><%= call.message %></td>
-        <td><%= call.customer %></td>
-        <td><%= link_to 'Show', call %></td>
-        <td><%= link_to 'Edit', edit_call_path(call) %></td>
-        <td><%= link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= call.customer_id %></td>
+        <td><%=l call.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_call_path(call), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      call_path(call),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Call', new_call_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_call_path,
+            :class => 'btn btn-primary' %>
