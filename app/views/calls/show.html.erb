@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @call.phone_number %>
+</p>
+
+<p>
+  <strong>Contact name:</strong>
+  <%= @call.contact_name %>
+</p>
+
+<p>
+  <strong>Recieved at:</strong>
+  <%= @call.recieved_at %>
+</p>
+
+<p>
+  <strong>Responded:</strong>
+  <%= @call.responded %>
+</p>
+
+<p>
+  <strong>Is voicemail:</strong>
+  <%= @call.is_voicemail %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @call.message %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @call.customer %>
+</p>
+
+<%= link_to 'Edit', edit_call_path(@call) %> |
+<%= link_to 'Back', calls_path %>
