@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921182049) do
+ActiveRecord::Schema.define(version: 20150921193225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "calls", force: :cascade do |t|
+    t.string   "phone_number"
+    t.string   "contact_name"
+    t.datetime "recieved_at"
+    t.boolean  "responded"
+    t.boolean  "is_voicemail"
+    t.text     "message"
+    t.integer  "customer_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "calls", ["customer_id"], name: "index_calls_on_customer_id", using: :btree
 
   create_table "customers", force: :cascade do |t|
     t.string   "name"
@@ -25,4 +39,17 @@ ActiveRecord::Schema.define(version: 20150921182049) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "emails", force: :cascade do |t|
+    t.string   "email_address"
+    t.string   "email_subject"
+    t.text     "email_text"
+    t.integer  "customer_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "emails", ["customer_id"], name: "index_emails_on_customer_id", using: :btree
+
+  add_foreign_key "calls", "customers"
+  add_foreign_key "emails", "customers"
 end
