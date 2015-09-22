@@ -21,7 +21,7 @@
         <td><%= email.email_address %></td>
         <td><%= email.email_subject %></td>
         <td><%= email.email_text %></td>
-        <td><%= email.customer_id %></td>
+        <td><%= link_to(email.customer.name, customer_path(email.customer)) %></td>
         <td><%=l email.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

@@ -27,7 +27,7 @@
         <td><%= call.responded %></td>
         <td><%= call.is_voicemail %></td>
         <td><%= call.message %></td>
-        <td><%= call.customer_id %></td>
+        <td><%= link_to(call.customer.name, customer_path(call.customer)) %></td>
         <td><%=l call.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
