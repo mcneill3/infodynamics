@@ -39,12 +39,12 @@
   <div class="control-group">
     <%= f.label :purchased_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :purchased_at, :class => 'form-control' %>
+      <%= f.datetime_select :purchased_at, :class => 'form-control' %>
     </div>
     <%= error_span(@customer[:purchased_at]) %>
   </div>
 
-
+  <br />
   <%= f.submit nil, :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
             customers_path, :class => 'btn btn-default' %>

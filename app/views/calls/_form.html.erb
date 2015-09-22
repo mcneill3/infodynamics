@@ -32,21 +32,21 @@
   <div class="control-group">
     <%= f.label :recieved_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :recieved_at, :class => 'form-control' %>
+      <%= f.datetime_select :recieved_at, :class => 'form-control' %>
     </div>
     <%= error_span(@call[:recieved_at]) %>
   </div>
   <div class="control-group">
     <%= f.label :responded, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :responded, :class => 'form-control' %>
+      <%= f.check_box :responded, :class => 'form-control' %>
     </div>
     <%= error_span(@call[:responded]) %>
   </div>
   <div class="control-group">
     <%= f.label :is_voicemail, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :is_voicemail, :class => 'form-control' %>
+      <%= f.check_box :is_voicemail, :class => 'form-control' %>
     </div>
     <%= error_span(@call[:is_voicemail]) %>
   </div>
@@ -60,12 +60,12 @@
   <div class="control-group">
     <%= f.label :customer_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :customer_id, :class => 'form-control' %>
+      <%= f.collection_select( :customer_id, Customer.all, :id, :name, :class => 'form-control') %>
     </div>
     <%= error_span(@call[:customer_id]) %>
   </div>
 
-
+  <br />
   <%= f.submit nil, :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
             calls_path, :class => 'btn btn-default' %>
